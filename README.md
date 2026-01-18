@@ -24,7 +24,7 @@ A top-down RPG adventure game set in 'The Land' with skilling and combat, built 
 
 ## Installation
 
-1. Install Python 3.12 or higher
+1. Install Python 3.8 or higher
 2. Install dependencies:
 ```bash
 pip install -r requirements.txt
