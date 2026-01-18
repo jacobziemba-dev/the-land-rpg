@@ -2,6 +2,14 @@
 
 A top-down RPG adventure game set in 'The Land' with skilling and combat, built in Python with Pygame.
 
+## Screenshots
+
+### Gameplay
+![The Land RPG Gameplay](https://github.com/user-attachments/assets/6ae9e690-ca19-428c-944c-4894373f8c10)
+
+### Inventory System
+![Inventory UI](https://github.com/user-attachments/assets/d8401a5f-e9ae-483b-b4dd-09964e95df4c)
+
 ## Features
 
 - **Point-and-click movement**: Click anywhere to move your character
