@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Magic ARPG - Game Vision Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+        color: #e0e0e0;
+        padding: 40px 20px;
+        min-height: 100vh;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #a855f7;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    }
+    
+    .subtitle {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+    
+    .section {
+        background: rgba(30, 30, 46, 0.9);
+        border: 2px solid #374151;
+        border-radius: 20px;
+        padding: 35px;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+    }
+    
+    .section:hover {
+        border-color: #a855f7;
+        box-shadow: 0 8px 30px rgba(168, 85, 247, 0.2);
+    }
+    
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #374151;
+    }
+    
+    .section-icon {
+        font-size: 2em;
+        filter: drop-shadow(0 0 10px currentColor);
+    }
+    
+    .section-title {
+        font-size: 1.8em;
+        color: #a855f7;
+        font-weight: bold;
+    }
+    
+    .prompt {
+        margin-bottom: 25px;
+    }
+    
+    .prompt-label {
+        display: block;
+        color: #c084fc;
+        font-weight: 600;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    
+    .prompt-hint {
+        display: block;
+        color: #94a3b8;
+        font-size: 0.95em;
+        font-style: italic;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+    
+    input[type="text"],
+    textarea {
+        width: 100%;
+        background: rgba(15, 15, 30, 0.8);
+        border: 2px solid #4b5563;
+        border-radius: 10px;
+        padding: 15px;
+        color: #e0e0e0;
+        font-size: 1em;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+    
+    input[type="text"]:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #a855f7;
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+    }
+    
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+        line-height: 1.6;
+    }
+    
+    .color-picker-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 15px;
+    }
+    
+    .color-item {
+        background: rgba(15, 15, 30, 0.6);
+        border: 2px solid #4b5563;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    
+    .color-item label {
+        display: block;
+        color: #c084fc;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    
+    .color-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    input[type="color"] {
+        width: 60px;
+        height: 40px;
+        border: 2px solid #4b5563;
+        border-radius: 8px;
+        cursor: pointer;
+        background: transparent;
+    }
+    
+    input[type="color"]::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+    
+    input[type="color"]::-webkit-color-swatch {
+        border: none;
+        border-radius: 6px;
+    }
+    
+    .reference-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .reference-box {
+        background: rgba(15, 15, 30, 0.6);
+        border: 2px solid #4b5563;
+        border-radius: 10px;
+        padding: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .reference-box:hover {
+        border-color: #a855f7;
+        transform: translateY(-3px);
+    }
+    
+    .checkbox-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 15px;
+    }
+    
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(15, 15, 30, 0.6);
+        border: 2px solid #4b5563;
+        border-radius: 8px;
+        padding: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .checkbox-item:hover {
+        border-color: #a855f7;
+    }
+    
+    .checkbox-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+    .checkbox-item label {
+        cursor: pointer;
+        color: #e0e0e0;
+    }
+    
+    .checkbox-item input[type="checkbox"]:checked + label {
+        color: #a855f7;
+        font-weight: 600;
+    }
+    
+    .mood-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .mood-card {
+        aspect-ratio: 1;
+        background: rgba(15, 15, 30, 0.6);
+        border: 2px solid #4b5563;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .mood-card:hover {
+        border-color: #a855f7;
+        transform: scale(1.05);
+    }
+    
+    .mood-card.selected {
+        border-color: #a855f7;
+        background: rgba(168, 85, 247, 0.2);
+    }
+    
+    .mood-card-icon {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+    
+    .mood-card-label {
+        font-size: 0.9em;
+        color: #c084fc;
+    }
+    
+    .example-text {
+        background: rgba(168, 85, 247, 0.1);
+        border-left: 4px solid #a855f7;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+        color: #d1d5db;
+        line-height: 1.6;
+    }
+    
+    .save-button {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 18px 40px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        display: block;
+        margin: 40px auto;
+        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+        transition: all 0.3s ease;
+    }
+    
+    .save-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6);
+    }
+    
+    .save-button:active {
+        transform: translateY(0);
+    }
+    
+    .helper-note {
+        background: rgba(59, 130, 246, 0.1);
+        border-left: 4px solid #3b82f6;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+        color: #93c5fd;
+        line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+        .section {
+            padding: 25px 20px;
+        }
+        
+        h1 {
+            font-size: 2em;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Your Game Vision Canvas</h1>
+        <p class="subtitle">
+            Fill this out to discover what your dark magic ARPG will really be. There are no wrong answers here, just your vision taking shape. Save it when you're done and refer back to it whenever you need to remember what you're building.
+        </p>
+
+```
+    <!-- THE CORE FEELING -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">💜</span>
+            <h2 class="section-title">The Core Feeling</h2>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">When someone plays your game for 5 minutes, what feeling should they have?</label>
+            <span class="prompt-hint">Think about emotions, not mechanics. Examples: Powerful? Tense? Overwhelmed? Strategic? Unstoppable? Desperate? Choose one main feeling.</span>
+            <input type="text" id="core-feeling" placeholder="Example: Desperately fighting against overwhelming corruption">
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Describe your game in ONE sentence (the elevator pitch)</label>
+            <span class="prompt-hint">If you had 10 seconds to tell someone about your game, what would you say? This becomes your north star.</span>
+            <input type="text" id="elevator-pitch" placeholder="Example: Survive endless floors of corrupted magic where every run makes you stronger">
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">What makes YOUR game different from Diablo or Hades?</label>
+            <span class="prompt-hint">This is your unique hook. What will make people say 'oh that's interesting' instead of 'another ARPG'?</span>
+            <textarea id="unique-hook" placeholder="Example: The magic corrupts you as you use it - powerful spells cost health and sanity, creating a risk-reward spiral"></textarea>
+        </div>
+    </div>
+    
+    <!-- VISUAL IDENTITY -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🎨</span>
+            <h2 class="section-title">Visual Identity</h2>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Choose your color palette (pick 3-5 colors that define your game)</label>
+            <span class="prompt-hint">Dark gritty magic needs a limited palette. Too many colors dilutes the mood. Think about what emotions these colors create.</span>
+            
+            <div class="color-picker-group">
+                <div class="color-item">
+                    <label>Primary Dark</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="color-1" value="#2D1B3D">
+                        <input type="text" id="color-1-hex" value="#2D1B3D" readonly style="width: 100px;">
+                    </div>
+                    <small style="color: #94a3b8; display: block; margin-top: 5px;">Deep purple - corruption, magic</small>
+                </div>
+                
+                <div class="color-item">
+                    <label>Accent Color 1</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="color-2" value="#8B1E3F">
+                        <input type="text" id="color-2-hex" value="#8B1E3F" readonly style="width: 100px;">
+                    </div>
+                    <small style="color: #94a3b8; display: block; margin-top: 5px;">Blood red - danger, violence</small>
+                </div>
+                
+                <div class="color-item">
+                    <label>Accent Color 2</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="color-3" value="#3C6E47">
+                        <input type="text" id="color-3-hex" value="#3C6E47" readonly style="width: 100px;">
+                    </div>
+                    <small style="color: #94a3b8; display: block; margin-top: 5px;">Sickly green - poison, decay</small>
+                </div>
+                
+                <div class="color-item">
+                    <label>Neutral/UI</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="color-4" value="#4A4A4A">
+                        <input type="text" id="color-4-hex" value="#4A4A4A" readonly style="width: 100px;">
+                    </div>
+                    <small style="color: #94a3b8; display: block; margin-top: 5px;">Ash gray - stone, ancient ruins</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Pick 3 visual reference games that inspire your art style</label>
+            <span class="prompt-hint">These don't have to be ARPGs. Pick games where you love HOW they look, not what they do. This helps establish your visual direction.</span>
+            
+            <div class="reference-grid">
+                <div class="reference-box">
+                    <input type="text" id="ref-1" placeholder="Example: Darkest Dungeon" style="margin-bottom: 8px;">
+                    <textarea id="ref-1-why" placeholder="Why this one? (What specifically do you like about its art?)" style="min-height: 60px; font-size: 0.9em;"></textarea>
+                </div>
+                <div class="reference-box">
+                    <input type="text" id="ref-2" placeholder="Example: Hades">
+                    <textarea id="ref-2-why" placeholder="Why this one?" style="min-height: 60px; font-size: 0.9em;"></textarea>
+                </div>
+                <div class="reference-box">
+                    <input type="text" id="ref-3" placeholder="Example: Dead Cells">
+                    <textarea id="ref-3-why" placeholder="Why this one?" style="min-height: 60px; font-size: 0.9em;"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Select the mood words that describe your visual style</label>
+            <span class="prompt-hint">Click the cards that feel right. These guide every art decision you make later.</span>
+            
+            <div class="mood-board">
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">🌑</div>
+                    <div class="mood-card-label">Dark</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">⚔️</div>
+                    <div class="mood-card-label">Gritty</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">✨</div>
+                    <div class="mood-card-label">Magical</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">💀</div>
+                    <div class="mood-card-label">Gothic</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">🩸</div>
+                    <div class="mood-card-label">Visceral</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">🏚️</div>
+                    <div class="mood-card-label">Decayed</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">👁️</div>
+                    <div class="mood-card-label">Eldritch</div>
+                </div>
+                <div class="mood-card" onclick="toggleMood(this)">
+                    <div class="mood-card-icon">⚡</div>
+                    <div class="mood-card-label">Energetic</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- COMBAT & GAMEPLAY -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">⚔️</span>
+            <h2 class="section-title">Combat & Gameplay Feel</h2>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Describe how combat should FEEL in 2-3 sentences</label>
+            <span class="prompt-hint">Not what buttons do, but the sensation. Fast or deliberate? Chaotic or tactical? Powerful or desperate?</span>
+            <textarea id="combat-feel" placeholder="Example: Every attack should feel heavy and impactful. Magic drains you but devastates enemies. You're always one mistake from death, but skilled play makes you feel unstoppable."></textarea>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">What is the ONE core combat mechanic that makes your game unique?</label>
+            <span class="prompt-hint">Hades has boons. Diablo has loot. Souls has stamina management. What's your thing?</span>
+            <textarea id="core-mechanic" placeholder="Example: Corruption System - powerful magic corrupts you. The stronger you get, the more unstable you become. High risk, high reward."></textarea>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Pick the combat pace that feels right</label>
+            <span class="prompt-hint">This affects everything from enemy speed to skill cooldowns. Be honest about what you find fun.</span>
+            
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="radio" name="pace" id="pace-frenetic" value="frenetic">
+                    <label for="pace-frenetic">Frenetic (Vampire Survivors)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" name="pace" id="pace-fast" value="fast">
+                    <label for="pace-fast">Fast (Hades, Dead Cells)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" name="pace" id="pace-moderate" value="moderate">
+                    <label for="pace-moderate">Moderate (Diablo 3)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="radio" name="pace" id="pace-deliberate" value="deliberate">
+                    <label for="pace-deliberate">Deliberate (Dark Souls)</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Describe your ideal player character in 2-3 sentences</label>
+            <span class="prompt-hint">Who are they? What do they look like? Why are they here? This helps you design everything from sprites to animations.</span>
+            <textarea id="player-character" placeholder="Example: A corrupted mage seeking redemption through the very magic that damned them. Hooded robes hide their twisted form. Glowing eyes betray the dark power within."></textarea>
+        </div>
+    </div>
+    
+    <!-- ENEMIES & WORLD -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">👹</span>
+            <h2 class="section-title">Enemies & World</h2>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">What is this dungeon and why does it exist?</label>
+            <span class="prompt-hint">You don't need a novel, just a clear concept. This informs enemy design, environment art, and atmosphere.</span>
+            <textarea id="world-concept" placeholder="Example: An ancient cathedral consumed by corrupted magic. Once a place of healing, now it breeds twisted versions of those who sought salvation. Each floor delves deeper into the corruption's source."></textarea>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Describe your 5 enemy types (one per line or short paragraph)</label>
+            <span class="prompt-hint">Include what they look like and ONE defining behavior. This becomes your enemy design document.</span>
+            <textarea id="enemy-roster" placeholder="Example:
+```
+
+1. Corrupted Wraith - Hooded spectre that teleports around the player, strikes from behind
+1. Dark Cultist - Robed figure that fires purple projectiles, stays at range
+1. Blood Golem - Massive stone creature, slow but devastating melee attacks
+1. Shadow Hound - Fast wolf-like beast, hunts in packs, circles player
+1. Necromancer - Elite caster that summons the dead, must be priority target” style=“min-height: 150px;”></textarea>
+   </div>
+   
+   ```
+        <div class="prompt">
+            <label class="prompt-label">What does the BOSS look like and why is it scary?</label>
+            <span class="prompt-hint">Your floor 5 boss should be the culmination of everything. What makes it memorable?</span>
+            <textarea id="boss-concept" placeholder="Example: The Lich Lord - a towering figure of bone and shadow wearing a crown of thorns. Phases between melee and ranged magic. Summons waves of minions. The source of the cathedral's corruption."></textarea>
+        </div>
+    </div>
+    
+    <!-- PROGRESSION & REWARDS -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">📈</span>
+            <h2 class="section-title">Progression & Rewards</h2>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">What makes players want to do another run after dying?</label>
+            <span class="prompt-hint">This is your meta-progression hook. In Hades it's story. In Dead Cells it's unlocks. What's yours?</span>
+            <textarea id="meta-hook" placeholder="Example: Each death grants Soul Fragments. Use them to unlock permanent dark powers at the Altar of Corruption. The more you embrace the darkness, the stronger you become."></textarea>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">What are your 3 permanent upgrades players can unlock?</label>
+            <span class="prompt-hint">These should change how the game feels, not just add numbers. Make them exciting choices.</span>
+            <textarea id="permanent-upgrades" placeholder="Example:
+   ```
+1. Dark Pact - Deal 15% more damage but lose 10% max health (high risk playstyle)
+1. Soul Harvest - Recover 5% health on kill (sustain playstyle)
+1. Void Walker - Move 20% faster, dash cooldown reduced (mobility playstyle)” style=“min-height: 120px;”></textarea>
+   </div>
+   
+   ```
+        <div class="prompt">
+            <label class="prompt-label">What's the victory condition? How do runs end?</label>
+            <span class="prompt-hint">Clear answer needed: fixed floors, endless mode, time limit, boss rush?</span>
+            <textarea id="victory-condition" placeholder="Example: Defeat the Lich Lord on Floor 5 to complete a run. Then unlock Endless Mode where floors get progressively harder with unique modifiers each level."></textarea>
+        </div>
+    </div>
+    
+    <!-- AUDIO ATMOSPHERE -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">🔊</span>
+            <h2 class="section-title">Audio & Atmosphere</h2>
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">If your game had a soundtrack, what genre would it be?</label>
+            <span class="prompt-hint">This helps you search for music later. Be specific: dark ambient? Aggressive metal? Haunting orchestral?</span>
+            <input type="text" id="music-genre" placeholder="Example: Dark ambient with subtle choir, like a corrupted church hymn">
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">Describe the sound of your magic/attacks in words</label>
+            <span class="prompt-hint">Onomatopoeia is fine here. This guides your sound effect search or creation.</span>
+            <textarea id="sfx-description" placeholder="Example: Magic sounds like distorted whispers mixed with electrical crackling. Melee hits are wet, heavy thuds. Enemy deaths are guttural gasps that fade into echoes."></textarea>
+        </div>
+    </div>
+    
+    <!-- SCOPE REALITY CHECK -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-icon">✂️</span>
+            <h2 class="section-title">Scope Reality Check</h2>
+        </div>
+        
+        <div class="helper-note">
+            This section keeps you honest. Every feature you add multiplies development time. Being clear about what you're NOT making is just as important as what you are making.
+        </div>
+        
+        <div class="prompt">
+            <label class="prompt-label">What features are you explicitly NOT building? (List at least 5)</label>
+            <span class="prompt-hint">This is your protection against scope creep. When you want to add something later, check this list first.</span>
+            <textarea id="not-building" placeholder="Example:
+   ```
+
+❌ Multiple character classes (just one mage)
+❌ Equipment/loot system with random stats
+❌ Multiplayer or co-op
+❌ Voice acting or cinematics
+❌ More than 5 floors for initial launch
+❌ Complex skill trees (just 3 skills + upgrades)
+❌ Achievement system
+❌ Daily challenges (post-launch maybe)” style=“min-height: 150px;”></textarea>
+</div>
+
+```
+        <div class="prompt">
+            <label class="prompt-label">If you had to cut 30% of your game, what would you sacrifice?</label>
+            <span class="prompt-hint">Seriously think about this now. When Month 4 hits and you're behind schedule, what's expendable?</span>
+            <textarea id="cut-list" placeholder="Example: Meta-progression hub could become a simple menu. Minimap could be just an arrow. Could launch with 3 enemy types instead of 5. Boss could be simpler (no phase changes)."></textarea>
+        </div>
+    </div>
+    
+    <button class="save-button" onclick="saveVision()">💾 Save Your Vision</button>
+    
+    <div class="helper-note" style="margin-top: 30px;">
+        After saving, keep this document open in a browser tab. Read it every Monday before you start your week's work. When you're tempted to add features, ask yourself: does this serve the core feeling I defined at the top? If no, cut it.
+    </div>
+</div>
+
+<script>
+    // Update hex values when color pickers change
+    document.querySelectorAll('input[type="color"]').forEach(picker => {
+        picker.addEventListener('input', function() {
+            const hexInput = document.getElementById(this.id + '-hex');
+            hexInput.value = this.value.toUpperCase();
+        });
+    });
+    
+    // Toggle mood cards
+    function toggleMood(card) {
+        card.classList.toggle('selected');
+    }
+    
+    // Save functionality
+    function saveVision() {
+        const vision = {
+            coreFeeling: document.getElementById('core-feeling').value,
+            elevatorPitch: document.getElementById('elevator-pitch').value,
+            uniqueHook: document.getElementById('unique-hook').value,
+            
+            colors: {
+                primary: document.getElementById('color-1').value,
+                accent1: document.getElementById('color-2').value,
+                accent2: document.getElementById('color-3').value,
+                neutral: document.getElementById('color-4').value
+            },
+            
+            references: {
+                game1: document.getElementById('ref-1').value,
+                why1: document.getElementById('ref-1-why').value,
+                game2: document.getElementById('ref-2').value,
+                why2: document.getElementById('ref-2-why').value,
+                game3: document.getElementById('ref-3').value,
+                why3: document.getElementById('ref-3-why').value
+            },
+            
+            mood: Array.from(document.querySelectorAll('.mood-card.selected'))
+                .map(card => card.querySelector('.mood-card-label').textContent),
+            
+            combatFeel: document.getElementById('combat-feel').value,
+            coreMechanic: document.getElementById('core-mechanic').value,
+            combatPace: document.querySelector('input[name="pace"]:checked')?.value || '',
+            playerCharacter: document.getElementById('player-character').value,
+            
+            worldConcept: document.getElementById('world-concept').value,
+            enemyRoster: document.getElementById('enemy-roster').value,
+            bossConcept: document.getElementById('boss-concept').value,
+            
+            metaHook: document.getElementById('meta-hook').value,
+            permanentUpgrades: document.getElementById('permanent-upgrades').value,
+            victoryCondition: document.getElementById('victory-condition').value,
+            
+            musicGenre: document.getElementById('music-genre').value,
+            sfxDescription: document.getElementById('sfx-description').value,
+            
+            notBuilding: document.getElementById('not-building').value,
+            cutList: document.getElementById('cut-list').value,
+            
+            savedDate: new Date().toLocaleString()
+        };
+        
+        // Save to localStorage
+        localStorage.setItem('gameVision', JSON.stringify(vision));
+        
+        // Create downloadable text file
+        const visionText = formatVisionDocument(vision);
+        const blob = new Blob([visionText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'dark-magic-arpg-vision.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        alert('✅ Vision saved! Downloaded as text file and saved to browser memory.');
+    }
+    
+    function formatVisionDocument(vision) {
+        return `
+```
+
+═══════════════════════════════════════════════════════════
+DARK MAGIC ARPG - GAME VISION DOCUMENT
+═══════════════════════════════════════════════════════════
+
+Saved: ${vision.savedDate}
+
+───────────────────────────────────────────────────────────
+THE CORE FEELING
+───────────────────────────────────────────────────────────
+
+Core Feeling: ${vision.coreFeeling}
+
+Elevator Pitch: ${vision.elevatorPitch}
+
+Unique Hook: ${vision.uniqueHook}
+
+───────────────────────────────────────────────────────────
+VISUAL IDENTITY
+───────────────────────────────────────────────────────────
+
+Color Palette:
+• Primary Dark: ${vision.colors.primary}
+• Accent 1: ${vision.colors.accent1}
+• Accent 2: ${vision.colors.accent2}
+• Neutral/UI: ${vision.colors.neutral}
+
+Visual References:
+
+1. ${vision.references.game1}
+   Why: ${vision.references.why1}
+1. ${vision.references.game2}
+   Why: ${vision.references.why2}
+1. ${vision.references.game3}
+   Why: ${vision.references.why3}
+
+Mood Words: ${vision.mood.join(’, ’)}
+
+───────────────────────────────────────────────────────────
+COMBAT & GAMEPLAY FEEL
+───────────────────────────────────────────────────────────
+
+Combat Feel: ${vision.combatFeel}
+
+Core Mechanic: ${vision.coreMechanic}
+
+Combat Pace: ${vision.combatPace}
+
+Player Character: ${vision.playerCharacter}
+
+───────────────────────────────────────────────────────────
+ENEMIES & WORLD
+───────────────────────────────────────────────────────────
+
+World Concept: ${vision.worldConcept}
+
+Enemy Roster:
+${vision.enemyRoster}
+
+Boss Concept: ${vision.bossConcept}
+
+───────────────────────────────────────────────────────────
+PROGRESSION & REWARDS
+───────────────────────────────────────────────────────────
+
+Meta-Progression Hook: ${vision.metaHook}
+
+Permanent Upgrades:
+${vision.permanentUpgrades}
+
+Victory Condition: ${vision.victoryCondition}
+
+───────────────────────────────────────────────────────────
+AUDIO & ATMOSPHERE
+───────────────────────────────────────────────────────────
+
+Music Genre: ${vision.musicGenre}
+
+Sound Effects: ${vision.sfxDescription}
+
+───────────────────────────────────────────────────────────
+SCOPE REALITY CHECK
+───────────────────────────────────────────────────────────
+
+NOT Building:
+${vision.notBuilding}
+
+If I Need to Cut 30%:
+${vision.cutList}
+
+═══════════════════════════════════════════════════════════
+END OF VISION DOCUMENT
+═══════════════════════════════════════════════════════════
+
+Read this every Monday. When you’re tempted to add features,
+ask: does this serve the core feeling at the top?
+
+If no, cut it.
+`;
+}
+
+```
+    // Load saved vision on page load
+    window.addEventListener('load', function() {
+        const saved = localStorage.getItem('gameVision');
+        if (saved) {
+            const vision = JSON.parse(saved);
+            
+            document.getElementById('core-feeling').value = vision.coreFeeling || '';
+            document.getElementById('elevator-pitch').value = vision.elevatorPitch || '';
+            document.getElementById('unique-hook').value = vision.uniqueHook || '';
+            
+            if (vision.colors) {
+                document.getElementById('color-1').value = vision.colors.primary || '#2D1B3D';
+                document.getElementById('color-2').value = vision.colors.accent1 || '#8B1E3F';
+                document.getElementById('color-3').value = vision.colors.accent2 || '#3C6E47';
+                document.getElementById('color-4').value = vision.colors.neutral || '#4A4A4A';
+                
+                // Trigger updates
+                document.querySelectorAll('input[type="color"]').forEach(picker => {
+                    picker.dispatchEvent(new Event('input'));
+                });
+            }
+            
+            if (vision.references) {
+                document.getElementById('ref-1').value = vision.references.game1 || '';
+                document.getElementById('ref-1-why').value = vision.references.why1 || '';
+                document.getElementById('ref-2').value = vision.references.game2 || '';
+                document.getElementById('ref-2-why').value = vision.references.why2 || '';
+                document.getElementById('ref-3').value = vision.references.game3 || '';
+                document.getElementById('ref-3-why').value = vision.references.why3 || '';
+            }
+            
+            document.getElementById('combat-feel').value = vision.combatFeel || '';
+            document.getElementById('core-mechanic').value = vision.coreMechanic || '';
+            document.getElementById('player-character').value = vision.playerCharacter || '';
+            
+            if (vision.combatPace) {
+                const paceRadio = document.getElementById('pace-' + vision.combatPace);
+                if (paceRadio) paceRadio.checked = true;
+            }
+            
+            document.getElementById('world-concept').value = vision.worldConcept || '';
+            document.getElementById('enemy-roster').value = vision.enemyRoster || '';
+            document.getElementById('boss-concept').value = vision.bossConcept || '';
+            
+            document.getElementById('meta-hook').value = vision.metaHook || '';
+            document.getElementById('permanent-upgrades').value = vision.permanentUpgrades || '';
+            document.getElementById('victory-condition').value = vision.victoryCondition || '';
+            
+            document.getElementById('music-genre').value = vision.musicGenre || '';
+            document.getElementById('sfx-description').value = vision.sfxDescription || '';
+            
+            document.getElementById('not-building').value = vision.notBuilding || '';
+            document.getElementById('cut-list').value = vision.cutList || '';
+            
+            // Restore mood selections
+            if (vision.mood && vision.mood.length > 0) {
+                document.querySelectorAll('.mood-card').forEach(card => {
+                    const label = card.querySelector('.mood-card-label').textContent;
+                    if (vision.mood.includes(label)) {
+                        card.classList.add('selected');
+                    }
+                });
+            }
+        }
+    });
+</script>
+```
+
+</body>
+</html>
