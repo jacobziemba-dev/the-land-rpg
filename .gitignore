@@ -206,5 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Game screenshots
+# Game screenshots (but allow assets)
 *.png
+!assets/**/*.png

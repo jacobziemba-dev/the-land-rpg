@@ -1,0 +1,38 @@
+THE LAND RPG - PROJECT SUMMARY
+==============================
+
+DIRECTORY STRUCTURE
+-------------------
+Root/
+├── assets/           # Game assets (sprites, future audio)
+├── scripts/          # Helper/utility scripts
+├── src/              # Main source code
+│   ├── entities/     # Game entities (Player, Tree, Enemy)
+│   ├── systems/      # Game systems (XP, Inventory)
+│   └── ui/           # UI rendering modules
+└── tests/            # Test suite
+
+FILE COUNTS
+-----------
+Python source files: 17
+Sprite files: 4
+Documentation files: 2
+Configuration files: 1
+
+ENTRY POINT
+-----------
+python run_game.py
+
+KEY FEATURES
+------------
+✓ Modular architecture
+✓ Type hints throughout
+✓ Configuration centralized
+✓ Sprite support with fallback
+✓ Clean separation of concerns
+✓ Well-documented code
+
+DEVELOPMENT COMMANDS
+--------------------
+Run game:        python run_game.py
+Regenerate sprites: python scripts/create_sprites.py
